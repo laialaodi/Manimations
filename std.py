@@ -1,6 +1,7 @@
 #!/bin/env python3
 # -*- coding: UTF-8 -*-
 from os import startfile
+from shutil import copy
 from subprocess import run
 from manim import *
 
@@ -20,7 +21,7 @@ def render(py_file_path: str, classname: str | None = None, merge_audio: bool = 
             "-i",
             "C:\\Users\\frank\\Music\\C418 - Alpha.m4a",  # 音频文件路径
             "-i",
-            f"C:\\Users\\frank\\Documents\\E\\pg\\Python\\Manim\\media\\videos\\{filename}\\1080p60\\{classname}.mp4",  # 视频文件路径
+            f"C:\\Users\\frank\\Documents\\E\\pg\\Python\\Manimations\\media\\videos\\{filename}\\1080p60\\{classname}.mp4",  # 视频文件路径
             "-map",
             "0:a",  # 选择第一个输入文件的音频流
             "-map",
@@ -34,7 +35,12 @@ def render(py_file_path: str, classname: str | None = None, merge_audio: bool = 
         run(ffmpeg_command, check=True)
         startfile(f"{dir_name}\\{classname}.mp4")
     else:
-        run(f"manim --save_sections {py_file_path} {classname} -pqh")
+        run(f"manim --save_sections {py_file_path} {classname} -qh")
+        copy(
+            f"C:\\Users\\frank\\Documents\\E\\pg\\Python\\Manimations\\media\\videos\\{filename}\\1080p60\\{classname}.mp4",
+            f"{dir_name}\\{classname}.mp4",
+        )
+        startfile(f"{dir_name}\\{classname}.mp4")
 
 
 class TemplateScene(Scene):
