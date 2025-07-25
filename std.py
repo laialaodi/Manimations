@@ -51,7 +51,7 @@ class TemplateScene(Scene):
         self.wait(2)
         self.play(FadeOut(author_name), FadeOut(tips))
 
-    def the_end(self):
+    def ending(self):
         text = Tex("Thanks for watching")
         self.play(Write(text))
         self.wait(2)
@@ -59,8 +59,8 @@ class TemplateScene(Scene):
     def construct(self):
         self.next_section("signature")
         self.signature()
-        self.next_section("the end")
-        self.the_end()
+        self.next_section("ending")
+        self.ending()
 
 
 class Subtitle:
